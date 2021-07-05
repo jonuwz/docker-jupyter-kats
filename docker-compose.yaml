@@ -1,0 +1,21 @@
+version: '3.4'
+
+networks:
+  default:
+    external:
+      name: apps
+
+services:
+
+  jupyter:
+    image: local/jupyter:notebook-6.4.0
+    build:
+      context: .
+      network: host
+    container_name: jupyter
+    hostname: jupyter
+    command: ["start-notebook.sh", "--NotebookApp.token=''"]
+    ports:
+    - "9888:8888"
+#    volumes:
+#    - ./work:/home/jovyan/work
